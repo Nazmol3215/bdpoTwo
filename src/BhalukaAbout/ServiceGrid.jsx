@@ -13,7 +13,7 @@ const ServiceGrid = () => {
     },
     {
       items: [
-        { name: <Link to="/Fire_service_1" style={{ textDecoration: 'none', color: 'inherit' }} >ফায়ার সার্ভিস</Link> },
+        { name: <Link to="/Cook_butcher_1" style={{ textDecoration: 'none', color: 'inherit' }} >কসাই বাবুর্চি</Link> },
         { name: <Link to="/ProfileCardGrid" style={{ textDecoration: 'none', color: 'inherit' }} >থানা পুলিশ </Link> },
         { name: <Link to="/UpazilaAdmin_1" style={{ textDecoration: 'none', color: 'inherit' }} >উপজেলা প্রশাসন</Link> },
       ],
@@ -28,8 +28,8 @@ const ServiceGrid = () => {
     {
       items: [
         { name: <Link to="/Hospitals_Bhaluka_1" style={{ textDecoration: 'none', color: 'inherit' }}>হাসপাতাল</Link> },
+        { name: <Link to="/JournalistsList_1" style={{ textDecoration: 'none', color: 'inherit' }} >সাংবাদিকগন</Link> },
         { name: <Link to="/Ambulance" style={{ textDecoration: 'none', color: 'inherit' }} >এ্যাম্বুলেন্স</Link> },
-        { name: <Link to="/Famous_person" style={{ textDecoration: 'none', color: 'inherit' }} >প্রসিদ্ধ ব্যক্তি</Link> },
       ],
     },
     {
@@ -41,9 +41,9 @@ const ServiceGrid = () => {
     },
     {
       items: [
+        { name: <Link to="/Fire_service_1" style={{ textDecoration: 'none', color: 'inherit' }} >ফায়ার সার্ভিস</Link> },
         { name: <Link to="/Bhaluka_Upazila_1" style={{ textDecoration: 'none', color: 'inherit' }} >উপজেলা</Link> },
         { name: <Link to="/CardGrid" style={{ textDecoration: 'none', color: 'inherit' }}>সকল মিস্ত্রী</Link> },
-        { name: <Link to="/JournalistsList_1" style={{ textDecoration: 'none', color: 'inherit' }} >সাংবাদিকগন</Link> },
         { name: <Link to="/Famous_person" style={{ textDecoration: 'none', color: 'inherit' }} >প্রসিদ্ধ ব্যক্তি</Link> },
       ],
     },

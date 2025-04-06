@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import imone from "../Images/i.png";
 
 // প্রোফাইল ডেটা
 const profiles = [

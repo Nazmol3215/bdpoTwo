@@ -31,7 +31,7 @@ import DonorList from "./BhalukaAbout/DonorCard";
 import Mestiri_1 from "./BhalukaAbout/Mestiri_1";
 import Rione from "./Test/rione";
 import Rione_1 from "./Test/Mestiri";
-
+import Cook_butcher_1 from "./BhalukaAbout/Cook_butcher_1";
 
 
 export default function Router() {
@@ -73,6 +73,7 @@ export default function Router() {
       <Route path="/Mestiri_1" element={<Mestiri_1 />} />
       <Route path="/Rione" element={<Rione />} />
       <Route path="/Rione_1" element={<Rione_1 />} />
+      <Route path="/Cook_butcher_1" element={<Cook_butcher_1 />} />
 
 
 
