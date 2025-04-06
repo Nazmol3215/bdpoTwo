@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import fdgbvdrg from "../Images/im.png.webp";
 
-const DonorCard = ({ name, phone, bloodGroup, location }) => {
+// এলোমেলোভাবে প্রোফাইল শাফল করার ফাংশন
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+  }
+  return shuffled;
+};
+
+const DonorCard = ({ name, phone, bloodGroup, address }) => {
   return (
     <div style={styles.card}>
       <div style={styles.icon}>
         <img src={fdgbvdrg} alt="user-icon" style={styles.iconImage} />
       </div>
       <h3 style={styles.name}>{name}</h3>
-      <p style={styles.text}><strong>ফোন নম্বর:</strong> {phone}</p>
-      <p style={styles.text}><strong>রক্তের গ্রুপ:</strong> <span style={styles.bloodGroup}>{bloodGroup}</span></p>
-      <p style={styles.text}><strong>ঠিকানা:</strong> {location}</p>
-      <button style={styles.button}>
-        {/* <img src={fdgbvdrg} alt="phone-icon" style={styles.buttonIcon} /> */}
+      <p style={styles.text}>
+        <strong>রক্তের গ্রুপ:</strong>{" "}
+        <span style={styles.bloodGroup}>{bloodGroup}</span>
+      </p>
+      <p style={styles.text}>
+        <strong>ঠিকানা:</strong> {address}
+      </p>
+      <a href={`tel:${phone}`} style={styles.button}>
         কল করুন
-      </button>
+      </a>
     </div>
   );
 };
@@ -672,78 +685,145 @@ const DonorList = () => {
 
   ];
 
+  const [filteredDonors, setFilteredDonors] = useState(donors);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [bloodGroupFilter, setBloodGroupFilter] = useState('');
+  const [addressFilter, setAddressFilter] = useState('');
+
+  useEffect(() => {
+    // পেজ রিফ্রেশের পর এলোমেলোভাবে ডেটা শাফল করতে হবে
+    const shuffledDonors = shuffleArray(donors);
+    setFilteredDonors(shuffledDonors);
+  }, []);
+
+  useEffect(() => {
+    // ফিল্টার করার ফাংশন
+    const filtered = donors.filter(donor => {
+      const matchesBloodGroup = bloodGroupFilter ? donor.bloodGroup === bloodGroupFilter : true;
+      const matchesAddress = addressFilter ? donor.address.includes(addressFilter) : true;
+      const matchesSearch = donor.name.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesBloodGroup && matchesAddress && matchesSearch;
+    });
+    setFilteredDonors(filtered);
+  }, [searchQuery, bloodGroupFilter, addressFilter]);
+
   return (
     <div style={styles.container}>
-      {donors.map((donor, index) => (
+      {/* ফিল্টার সেকশন */}
+      <div style={styles.filterSection}>
+        <input
+          type="text"
+          placeholder="নাম দিয়ে খুঁজুন"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={styles.searchInput}
+        />
+        <select
+          value={bloodGroupFilter}
+          onChange={(e) => setBloodGroupFilter(e.target.value)}
+          style={styles.filterInput}
+        >
+          <option value="">রক্তের গ্রুপ</option>
+          <option value="A+">A+</option>
+          <option value="B+">B+</option>
+          <option value="AB+">AB+</option>
+          <option value="O+">O+</option>
+        </select>
+        <input
+          type="text"
+          placeholder="ঠিকানা দিয়ে খুঁজুন"
+          value={addressFilter}
+          onChange={(e) => setAddressFilter(e.target.value)}
+          style={styles.filterInput}
+        />
+      </div>
+
+      {/* ডোনর কার্ড */}
+      {filteredDonors.map((donor, index) => (
         <DonorCard
           key={index}
           name={donor.name}
           phone={donor.phone}
           bloodGroup={donor.bloodGroup}
-          location={donor.location}
+          address={donor.address}
         />
       ))}
     </div>
   );
 };
-const styles = {
-    container: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-      gap: '20px',
-      padding: '20px',
-    },
-    card: {
-      border: '1px solid #ddd',
-      borderRadius: '10px',
-      padding: '20px',
-      boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-      textAlign: 'center',
-      backgroundColor: '#fff',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    },
-    icon: {
-      marginBottom: '15px',
-    },
-    iconImage: {
-      width: '70px',
-      height: '70px',
-    },
-    name: {
-      fontSize: '13px',
-      fontWeight: 'bold',
-      marginBottom: '10px',
-      color: '#333',
-    },
-    text: {
-      fontSize: '9px',
-      margin: '5px 0',
-    },
-    bloodGroup: {
-      color: 'red',
-      fontWeight: 'bold',
-    },
-    button: {
-      marginTop: '15px',
-      backgroundColor: '#28a745',
-      color: '#fff',
-      padding: '10px 20px',
-      borderRadius: '5px',
-      border: 'none',
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: 'auto', // Centering the button horizontally
-    },
-    buttonIcon: {
-      width: '20px',
-      height: '20px',
-      marginRight: '8px', // Adding margin to the right of the icon
-    }
-  };
-  
 
-export default DonorList; 
+const styles = {
+  container: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: '20px',
+    padding: '20px',
+  },
+  filterSection: {
+    marginBottom: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  },
+  searchInput: {
+    padding: '10px',
+    fontSize: '14px',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+  },
+  filterInput: {
+    padding: '10px',
+    fontSize: '14px',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+  },
+  card: {
+    border: '1px solid #ddd',
+    borderRadius: '10px',
+    padding: '20px',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    textAlign: 'center',
+    backgroundColor: '#fff',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  icon: {
+    marginBottom: '15px',
+  },
+  iconImage: {
+    width: '70px',
+    height: '70px',
+  },
+  name: {
+    fontSize: '13px',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+    color: '#333',
+  },
+  text: {
+    fontSize: '9px',
+    margin: '5px 0',
+  },
+  bloodGroup: {
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  button: {
+    marginTop: '15px',
+    backgroundColor: '#28a745',
+    color: '#fff',
+    padding: '10px 20px',
+    borderRadius: '5px',
+    border: 'none',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 'auto',
+    textDecoration: 'none',
+    fontSize: '12px',
+  },
+};
+
+export default DonorList;

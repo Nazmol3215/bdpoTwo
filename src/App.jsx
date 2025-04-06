@@ -28,10 +28,10 @@ import Doctors_Valukka_1 from "./BhalukaAbout/Doctors_Valukka_1";
 import Ambulance_1 from "./BhalukaAbout/Ambulance_1";
 import Hospitals_Bhaluka_1 from "./BhalukaAbout/Hospitals_Bhaluka_1";
 import Lawyer_1 from "./BhalukaAbout/Lawyer_1";
-import DonorList from "./BhalukaAbout/DonorCard";
 import Mestiri_1 from "./BhalukaAbout/Mestiri_1";
 import Rione_1 from "./Test/Mestiri";
 import Cook_butcher_1 from "./BhalukaAbout/Cook_butcher_1";
+import DonorCard_1 from "./BhalukaAbout/DonorCard_1";
 
 
 export default function Router() {
@@ -69,7 +69,7 @@ export default function Router() {
       <Route path="/Ambulance_1" element={<Ambulance_1 />} />
       <Route path="/Hospitals_Bhaluka_1" element={<Hospitals_Bhaluka_1 />} />
       <Route path="/Lawyer_1" element={<Lawyer_1 />} />
-      <Route path="/DonorList" element={<DonorList />} />
+      <Route path="/DonorCard_1" element={<DonorCard_1 />} />
       <Route path="/Mestiri_1" element={<Mestiri_1 />} />
       <Route path="/Rione_1" element={<Rione_1 />} />
       <Route path="/Cook_butcher_1" element={<Cook_butcher_1 />} />
