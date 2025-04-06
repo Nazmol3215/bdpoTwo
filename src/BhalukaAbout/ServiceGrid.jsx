@@ -7,13 +7,13 @@ const ServiceGrid = () => {
       items: [
 
         { name: <Link to="/Mestiri_1" style={{ textDecoration: 'none', color: 'inherit' }} >সকল মিস্ত্রী</Link> },
-        { name: <Link to="/ValukaMunicipality_1" style={{ textDecoration: 'none', color: 'inherit' }}>পৌরসভা </Link> },
+        { name: <Link to="/Cook_butcher_1" style={{ textDecoration: 'none', color: 'inherit' }} >কসাই বাবুর্চি</Link> },
         { name: <Link to="/Union_1" style={{ textDecoration: 'none', color: 'inherit' }} >উপজেলা</Link> },
       ],
     },
     {
       items: [
-        { name: <Link to="/Cook_butcher_1" style={{ textDecoration: 'none', color: 'inherit' }} >কসাই বাবুর্চি</Link> },
+        { name: <Link to="/ValukaMunicipality_1" style={{ textDecoration: 'none', color: 'inherit' }}>পৌরসভা </Link> },
         { name: <Link to="/ProfileCardGrid" style={{ textDecoration: 'none', color: 'inherit' }} >থানা পুলিশ </Link> },
         { name: <Link to="/UpazilaAdmin_1" style={{ textDecoration: 'none', color: 'inherit' }} >উপজেলা প্রশাসন</Link> },
       ],
