@@ -29,7 +29,6 @@ import Hospitals_Bhaluka_1 from "./BhalukaAbout/Hospitals_Bhaluka_1";
 import Lawyer_1 from "./BhalukaAbout/Lawyer_1";
 import DonorList from "./BhalukaAbout/DonorCard";
 import Mestiri_1 from "./BhalukaAbout/Mestiri_1";
-import Rione from "./Test/rione";
 import Rione_1 from "./Test/Mestiri";
 import Cook_butcher_1 from "./BhalukaAbout/Cook_butcher_1";
 

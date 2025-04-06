@@ -227,10 +227,10 @@ const styles = {
   },
   title: {
     fontSize: "25px",
-    fontWeight: "bold",
+    // fontWeight: "bold",
     padding: " 0 26px 0 0",
     fontFamily: '"Galada", cursive',
-    fontWeight: 400,
+    // fontWeight: 400,
     fontStyle: 'normal',
     color: '#344CB7',
   },
