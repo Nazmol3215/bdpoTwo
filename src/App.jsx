@@ -71,7 +71,6 @@ export default function Router() {
       <Route path="/Lawyer_1" element={<Lawyer_1 />} />
       <Route path="/DonorList" element={<DonorList />} />
       <Route path="/Mestiri_1" element={<Mestiri_1 />} />
-      <Route path="/Rione" element={<Rione />} />
       <Route path="/Rione_1" element={<Rione_1 />} />
       <Route path="/Cook_butcher_1" element={<Cook_butcher_1 />} />
 
