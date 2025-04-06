@@ -29,7 +29,8 @@ import Hospitals_Bhaluka_1 from "./BhalukaAbout/Hospitals_Bhaluka_1";
 import Lawyer_1 from "./BhalukaAbout/Lawyer_1";
 import DonorList from "./BhalukaAbout/DonorCard";
 import Mestiri_1 from "./BhalukaAbout/Mestiri_1";
-
+import Rione from "./Test/rione";
+import Rione_1 from "./Test/Mestiri";
 
 
 
@@ -70,7 +71,12 @@ export default function Router() {
       <Route path="/Lawyer_1" element={<Lawyer_1 />} />
       <Route path="/DonorList" element={<DonorList />} />
       <Route path="/Mestiri_1" element={<Mestiri_1 />} />
-      
+      <Route path="/Rione" element={<Rione />} />
+      <Route path="/Rione_1" element={<Rione_1 />} />
+
+
+
+
     </Routes>
   </BrowserRouter>
 

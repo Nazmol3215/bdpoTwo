@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import imone from "../Images/i.png";
 
+// সমস্ত প্রোফাইলের ডেটা
 const profiles = [
-  { image: imone, name: 'MD AREFUL ISLAM RANA', phone: '01627584081', profession: 'ইলেকট্রিক মিস্ত্রি', address: 'ঝালপাড়া, হরিপুরবাড়ি' },
+ { image: imone, name: 'MD AREFUL ISLAM RANA', phone: '01627584081', profession: 'ইলেকট্রিক মিস্ত্রি', address: 'ঝালপাড়া, হরিপুরবাড়ি' },
   { image: "", name: 'মোঃ শরিফুল ইসলাম', phone: '01758471709', profession: 'রাজমিস্ত্রি', address: 'নতুন পুর বগিছা বাড়ি, ভাঙ্গুড়া মনমহিপুর' },
   { image: "", name: 'আমিন প্রাং', phone: '0714654618', profession: 'ইলেকট্রিশিয়ান', address: 'মহিকুড়ি, ভাঙ্গুড়া' },
   { image: "", name: 'MD AREFUL ISLAM RANA', phone: '01627584081', profession: 'ইলেকট্রিক মিস্ত্রি', address: 'ঝালপাড়া, হরিপুরবাড়ি' },
@@ -13,10 +14,6 @@ const profiles = [
   { image: "", name: 'MD AREFUL ISLAM RANA', phone: '01627584081', profession: 'ইলেক্ট্রিক মিস্ত্রি', address: 'ঝালপাড়া হবিগঞ্জ' },
   { image: "", name: 'মোঃ শরিফুল ইসলাম', phone: '01758471709', profession: 'রাজমিস্ত্রি', address: 'নতুন পুর বস্তি বাড়ি, ভাঙ্গন ময়মনসিংহ' },
   { image: "", name: 'Md shariful islam', phone: '01758471709', profession: 'রাজমিস্ত্রি', address: 'নতুন পুর বস্তি বাড়ি, ভাঙ্গন ময়মনসিংহ' },
-
-
-
-
   { name: 'মোঃ আরিফ মোল্লা', phone: '01308488451', profession: 'রাজমিস্ত্রী', address: '১ নং ওয়ার্ড, মোল্লা পাড়া, ভালুকা, ময়মনসিংহ' },
   { name: 'রুবেল হুসাইন', phone: '01631504844', profession: 'রং মিস্ত্রি', address: 'ভালুকা' },
   { name: 'হামিদ মিয়া', phone: '01626869920', profession: 'ইলেকট্রিক মিস্ত্রি', address: 'Seedstore Bhaluka' },
@@ -26,10 +23,6 @@ const profiles = [
   { name: 'মোঃ বিল্লাল হোসেন', phone: '01720819105', profession: 'ইলেকট্রিক মিস্ত্রি, স্যানিটারি মিস্ত্রি', address: 'বাটাজোর, ভালুকা' },
   { name: 'নিজাম উদ্দিন', phone: '01728516692', profession: 'স্যানিটারি মিস্ত্রি', address: 'সিডষ্টোর বাজার' },
   { name: 'মোঃ সহিদুল ইসলাম', phone: '০১৭৪১৩২৫১৯১', profession: 'কাঠমিস্ত্রী', address: 'উথুরা, ভালুকা' },
-
-
-
-
   { name: "মোঃ সোহেল রানা", phone: "০১৭২০২৩০৯৫৬", profession: "ইলেকট্রিক মিস্ত্রি, স্যানিটারি মিস্ত্রি", address: "ভালুকা" },
   { name: "ASHRAFUL ISLAM JOY", phone: "01742219898", profession: "ইলেকট্রিক মিস্ত্রি", address: "ভালুকা" },
   { name: "মো: বিপ্লব হোসাইন", phone: "01305748339", profession: "রাজমিস্ত্রী", address: "৩ নং ভরাডোবা ইউনিয়ন" },
@@ -38,7 +31,7 @@ const profiles = [
   { name: "মোঃ ফরহাদ হুসাইন ফাহাদ", phone: "01323666030", profession: "ইলেকট্রিক মিস্ত্রি", address: "সিডস্টোর, ভালুকা" },
   { name: "মোঃ পারভেজ মিয়া", phone: "01729793602", profession: "ইলেকট্রিক মিস্ত্রি", address: "ধামশুর, ভালুকা" },
   { name: "মোঃ ফরহাদ হোসেন", phone: "01986084400", profession: "ইলেকট্রিক মিস্ত্রি", address: "খোলাবাড়ী, উথুরা,ভালুকা, ময়মনসিংহ" },
-  { name: "মোঃ রায়হান শরিফ", phone: "01641821083 / 01736076009", profession: "থাই গ্লাস মিস্ত্রি", address: "লবণকোঠা,হবিরবাড়ী,ভালুকা,ময়মনসিংহ" },
+  { name: "মোঃ রায়হান শরিফ", phone: "01641821083", profession: "থাই গ্লাস মিস্ত্রি", address: "লবণকোঠা,হবিরবাড়ী,ভালুকা," },
   { name: "Palash Sarkar", phone: "01703-413302", profession: "ইলেকট্রিক মিস্ত্রি", address: "Dhamshur,Mollikbari,Bhaluka" },
   { name: "মাধব বাবু", phone: "01724400594", profession: "কাঠমিস্ত্রী", address: "বর্তা, ভালুকা, ময়মনসিংহ" },
   { name: "মোঃ সবুজ মিয়া", phone: "01637832076", profession: "স্যানিটারি মিস্ত্রি", address: "পাঁচ রাস্তার মোড়, ভালুকা, ময়মনসিংহ" },
@@ -57,9 +50,9 @@ const profiles = [
   { name: "রাসেল", phone: "01789044193", profession: "ইলেকট্রিক মিস্ত্রি", address: "মল্লিকবাড়ী, ভালুকা" },
   { name: "জাহিদুল ইসলাম নাছির", phone: "01609339360", profession: "ইলেকট্রিক মিস্ত্রি", address: "ভালুকা, মটর মিস্ত্রি" },
   { name: "দেলোয়ার", phone: "01721122447", profession: "রাজমিস্ত্রী, রং মিস্ত্রি", address: "সোনাখালী, ভালুকা। ঠিকাদার" },
-  { name: "Md Aftab Ahmed", phone: "01914456006", profession: "থাই গ্লাস মিস্ত্রি", address: "seed stor bazar" },
+  { name: "Md Aftab Ahmed", phone: "01914456006", profession: "থাই গ্লাস মিস্ত্রি", address: "সিডষ্টোর বাজার" },
   { name: "খাদেমুল ইসলাম বাবুল", phone: "01680347453", profession: "ইলেকট্রিক মিস্ত্রি", address: "ভালুকা" },
-  { name: "Md Aftab Ahmed", phone: "01914456006", profession: "থাই গ্লাস মিস্ত্রি", address: "seed stor bazar" },
+  { name: "Md Aftab Ahmed", phone: "01914456006", profession: "থাই গ্লাস মিস্ত্রি", address: "সিডষ্টোর বাজার" },
   { name: "নুরুল ইসলাম", phone: "01709158834", profession: "কসাই", address: "তামাট বাজার" },
   { name: "মোঃ সাব্বির হোসেন", phone: "01720382210", profession: "LED TV টেকনিশিয়ান", address: "সিডষ্টোর বাজার, ভালুকা ময়মনসিংহ" },
   { name: "মোঃ শাকিল", phone: "01754909394", profession: "থাই গ্লাস মিস্ত্রি", address: "সিডস্টোর, ভালুকা।" },
@@ -75,10 +68,6 @@ const profiles = [
   { name: "মোঃ হারুন অর রশিদ (হারুন)", phone: "01749941114", profession: "কাঠমিস্ত্রী", address: "নারাঙ্গী চৌরাস্তা, ১নং উথুরা ইউনিয়ন, ভালুকা, ময়মনসিংহ।" },
   { name: "আশরাফুল ইসলাম", phone: "01738296179", profession: "থাই গ্লাস মিস্ত্রি, ইন্টেরিয়র ডিজাইন", address: "শেখ সুপার মার্কেট,ভালুকা মল্লিকবাড়ী রোড,ভালুকা, ময়মনসিংহ।" },
   { name: "খাইরুল ইসলাম", phone: "01954079601", profession: "কাঠমিস্ত্রী", address: "পাড়াগাঁও,সীডষ্টোর বাজার,ভালুকা ময়মনসিংহ" },
-
-
-
-
   { name: 'মো: আমিনুল ইসলাম', phone: '01747733172', profession: 'ইলেকট্রিক মিস্ত্রি', address: 'ভালুকা বাজার সরকার অনুমোদিত লাইসেন্স প্রাপ্ত ইলেকট্রিশিয়ান ক্যাটাগরি বি, সি' },
   { name: 'Md Sharif Hossain', phone: '01775479654', profession: 'ইলেকট্রিক মিস্ত্রি, এসি মিস্ত্রি', address: 'Bharaduba, Bhaluka, Mymensingh' },
   { name: 'মো: রিপন মিয়া', phone: '01911142137', profession: 'ইলেকট্রিক মিস্ত্রি, গ্যাস মিস্ত্রি, স্যানিটারি মিস্ত্রি, ইলেক্ট্রিশিয়ান', address: 'চান্দেরবাজার, স্কয়ার মাস্টারবাড়ী,ভালুকা,ময়মনসিংহ' },
@@ -103,26 +92,22 @@ const profiles = [
   { name: 'মোহাম্মদ সোহেল', phone: '01670700658', profession: 'সিসি ক্যামেরা মিস্ত্রি', address: 'ভালুকা, ময়মনসিংহ' },
   { name: 'মোঃ মঈন উদ্দিন', phone: '01775527930', profession: 'রাজমিস্ত্রী, রং মিস্ত্রি', address: 'ফলবানী, ভালুকা' },
   { name: 'মহিউল ইসলাম', phone: '01741004457', profession: 'ইলেকট্রিক মিস্ত্রি', address: 'চান্দ্রা ভালুকাাুিার বাজার' }
-  
-
-
-
-
-
 
 
 
 ];
 
+// কল বাটনের জন্য ফাংশন
 const callPhone = (phone) => {
   window.location.href = `tel:${phone}`;
 };
 
+// প্রোফাইল কার্ড কম্পোনেন্ট
 const ProfileCard = ({ profile }) => {
   return (
     <div className="card text-center shadow-sm w-100" style={{ borderRadius: "15px", padding: "1px", backgroundColor: "#f9f9f9", border: "1px solid #ddd" }}>
       <img 
-        src={profile.image} 
+        src={profile.image || "https://via.placeholder.com/100"} 
         className="card-img-top rounded-circle mx-auto mt-3" 
         style={{ width: "100px", height: "100px", objectFit: "cover", border: "3px solid #007bff" }} 
         alt="Profile" 
@@ -159,11 +144,20 @@ const ProfileCard = ({ profile }) => {
   );
 };
 
-const Mestiri = () => {
+// মূল কম্পোনেন্ট
+const Rione = () => {
+  const [shuffledProfiles, setShuffledProfiles] = useState([]);
+
+  useEffect(() => {
+    // প্রোফাইল এলোমেলো করা
+    const shuffled = [...profiles].sort(() => 0.5 - Math.random());
+    setShuffledProfiles(shuffled);
+  }, []);
+
   return (
     <div className="container mt-4">
       <div className="row g-3">
-        {profiles.map((profile, index) => (
+        {shuffledProfiles.map((profile, index) => (
           <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={index}>
             <ProfileCard profile={profile} />
           </div>
@@ -173,4 +167,4 @@ const Mestiri = () => {
   );
 };
 
-export default Mestiri;
+export default Rione;
