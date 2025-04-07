@@ -7,8 +7,8 @@ const ServiceGrid = () => {
       items: [
 
         { name: <Link to="/Mestiri_1" style={{ textDecoration: 'none', color: 'inherit' }} >সকল মিস্ত্রী</Link> },
+        { name: <Link to="/House_rental_1" style={{ textDecoration: 'none', color: 'inherit' }} >বাসা ভাড়া</Link> },
         { name: <Link to="/Cook_butcher_1" style={{ textDecoration: 'none', color: 'inherit' }} >কসাই বাবুর্চি</Link> },
-        { name: <Link to="/Union_1" style={{ textDecoration: 'none', color: 'inherit' }} >উপজেলা</Link> },
       ],
     },
     {
@@ -20,9 +20,9 @@ const ServiceGrid = () => {
     },
     {
       items: [
+        { name: <Link to="/Union_1" style={{ textDecoration: 'none', color: 'inherit' }} >উপজেলা</Link> },
         { name: <Link to="/Doctors_Valukka_1" style={{ textDecoration: 'none', color: 'inherit' }}>ডাক্তার নার্স</Link> },
         { name: <Link to="/Ambulance_1" style={{ textDecoration: 'none', color: 'inherit' }} >এ্যাম্বুলেন্স</Link> },
-        { name: <Link to="/Famous_person_1" style={{ textDecoration: 'none', color: 'inherit' }} >প্রসিদ্ধ ব্যক্তি</Link> },
       ],
     },
     {

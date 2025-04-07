@@ -32,7 +32,7 @@ import Mestiri_1 from "./BhalukaAbout/Mestiri_1";
 import Rione_1 from "./Test/Mestiri";
 import Cook_butcher_1 from "./BhalukaAbout/Cook_butcher_1";
 import DonorCard_1 from "./BhalukaAbout/DonorCard_1";
-
+import House_rental_1 from "./BhalukaAbout/House_rental_1";
 
 export default function Router() {
   return (
@@ -73,6 +73,7 @@ export default function Router() {
       <Route path="/Mestiri_1" element={<Mestiri_1 />} />
       <Route path="/Rione_1" element={<Rione_1 />} />
       <Route path="/Cook_butcher_1" element={<Cook_butcher_1 />} />
+      <Route path="/House_rental_1" element={<House_rental_1 />} />
 
 
 
